@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ActionTypes from '../constants/action_types';
 
-export default () => ({
+export default (url) => ({
   type: ActionTypes.COINIGY_DATA_FETCH.name,
-  payload: axios.get('https://young-stream-93294.herokuapp.com/').then(response => response.data),
+  payload: axios.get(url).then(response => response.data),
 });

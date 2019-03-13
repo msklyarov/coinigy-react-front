@@ -9,9 +9,11 @@ import ViewDataComponent from './components/view_data';
 
 class ViewDataContainer extends React.Component {
   componentDidMount() {
-    this.props.fetchCoinigyData();
+    const url = prompt("Please enter REST server address", "http://api.your-server.com");
+
+    this.props.fetchCoinigyData(url);
     this.setState({
-      timerId: setInterval(this.props.fetchCoinigyData, 10000)
+      timerId: setInterval(() => this.props.fetchCoinigyData(url), 10000)
     })
   }
 
@@ -22,7 +24,7 @@ class ViewDataContainer extends React.Component {
 
   render() {
     return !this.props.coinigy.data ?
-      <div>Loading...</div> :
+      <div>Loading... (Please refresh page for the first time via F5 to enter server URL)</div> :
       <ViewDataComponent data={this.props.coinigy.data[0]} />;
   }
 }
